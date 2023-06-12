@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/layout}">
+<head>
+<title>User List</title>
+<!-- Read Dedicated CSS -->
+<link rel="stylesheet" th:href="@{/css/user/list.css}">
+</head>
+<body>
+	<div layout:fragment="content" class="me-5 pe-5">
+		<div class="header border-bottom">
+			<h1 class="h2">Author List</h1>
+		</div>
+		<a class="btn btn-outline-success m-3 col-1" th:href="@{/author/add}">+ Add</a>
+		<form>
+
+			<div class="table-responsive">
+				<table class="table mt-5">
+					<thead>
+						<tr>
+							<th>CateId</th>
+							<th>CateName</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="item: ${authorList}">
+							<td th:text="${item.id}"></td>
+							<td th:text="${item.authorName}"></td>
+							
+							<td><a class="btn btn-outline-primary" th:href="@{/author/list/edit/{id} (id= ${item.id})}"> <i
+									class="bi bi-pencil"></i>
+							</a> <a class="btn btn-outline-danger" th:href="@{'/author/list/delete/' + ${item.id}}"> <i class="bi bi-trash"></i>
+							</a></td>
+						</tr>
+
+					</tbody>
+				</table>
+			</div>
+		</form>
+	</div>
+</body>
+</html>
